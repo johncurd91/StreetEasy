@@ -29,13 +29,12 @@ y = df[["rent"]]
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=6)
 
 # Check shape of data
-"""
-print(f"The shape of the datasets are:\n"
+
+print(f"[Dataset shapes]:\n"
       f"x_train: {x_train.shape}\n"
       f"x_test: {x_test.shape}\n"
       f"y_train: {y_train.shape}\n"
       f"y_test: {y_test.shape}\n")
-"""
 
 # Create regression model
 mlr = LinearRegression()
@@ -53,23 +52,25 @@ plt.title("Actual vs Predicted prices")
 plt.show()
 
 # Check coefficients
-print("Model coefficients:")
+print("[Model coefficients]:")
 for i in range(len(x.columns)):
     print(f"{x.columns[i]}: {mlr.coef_[0][i]}")
 print("")
 
 # Plot relationships between between single variables
+"""
 for variable in x.columns:
     plt.scatter(df[[variable]], df[["rent"]], alpha=0.4)
     plt.xlabel(variable)
     plt.ylabel("rent")
     plt.title(f"{variable} vs rent")
     plt.show()
-
+"""
 
 # Score model
-print(f"Train score: {mlr.score(x_train, y_train)}")
-print(f"Test score: {mlr.score(x_test, y_test)}\n")
+print("[Test scores]:\n"
+      f"Train score: {mlr.score(x_train, y_train)}\n"
+      f"Test score: {mlr.score(x_test, y_test)}\n")
 
 residuals = y_predict - y_test
 

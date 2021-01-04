@@ -29,13 +29,12 @@ y = df[["rent"]]
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=6)
 
 # Check shape of data
-"""
-print(f"The shape of the datasets are:\n"
+
+print(f"[Dataset shapes]:\n"
       f"x_train: {x_train.shape}\n"
       f"x_test: {x_test.shape}\n"
       f"y_train: {y_train.shape}\n"
       f"y_test: {y_test.shape}\n")
-"""
 
 # Create regression model
 mlr = LinearRegression()
@@ -53,7 +52,7 @@ plt.title("Actual vs Predicted prices")
 plt.show()
 
 # Check coefficients
-print("Model coefficients:")
+print("[Model coefficients]:")
 for i in range(len(x.columns)):
     print(f"{x.columns[i]}: {mlr.coef_[0][i]}")
 print("")
@@ -69,8 +68,9 @@ for variable in x.columns:
 """
 
 # Score model
-print(f"Train score: {mlr.score(x_train, y_train)}")
-print(f"Test score: {mlr.score(x_test, y_test)}\n")
+print("[Test scores]:\n"
+      f"Train score: {mlr.score(x_train, y_train)}\n"
+      f"Test score: {mlr.score(x_test, y_test)}\n")
 
 residuals = y_predict - y_test
 
@@ -82,10 +82,11 @@ plt.title('Residual Analysis')
 plt.show()
 
 # Test prediction using example apartment from https://streeteasy.com/rental/2177438
-"""
 meeker_ave = [[1, 1, 620, 16, 1, 98, 1, 0, 1, 0, 0, 1, 1, 0]]
 predict = mlr.predict(meeker_ave)
 
-print(f"Predicted price of 534 Meeker Ave is: ${round(predict[0][0], 2)}.")
-"""
+print("[Test prediction]:\n"
+      f"Predicted price of 534 Meeker Ave is: ${round(predict[0][0], 2)}.\n"
+      f"Actual price as of 11/28/2017 is $2000.00.")
+
 

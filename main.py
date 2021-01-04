@@ -7,11 +7,17 @@ from mpl_toolkits.mplot3d import Axes3D
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
-streeteasy = pd.read_csv("streeteasy.csv")
 
+# Load data from csv into pandas dataframe
+streeteasy = pd.read_csv("streeteasy.csv")
 df = pd.DataFrame(streeteasy)
 
-x = df[["size_sqft", "building_age_yrs"]]
+# Dependent variables
+x_value_1 = "size_sqft"
+x_value_2 = "building_age_yrs"
+
+# Slice dataframe and fit model
+x = df[[x_value_1, x_value_2]]
 y = df[["rent"]]
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, test_size=0.2, random_state=6)
@@ -29,8 +35,8 @@ azim = -110
 
 ax = Axes3D(fig, elev=elev, azim=azim)
 
-ax.scatter(x_train[["size_sqft"]],
-           x_train[["building_age_yrs"]],
+ax.scatter(x_train[[x_value_1]],
+           x_train[[x_value_2]],
            y_train, c="k", marker="+")
 
 ax.plot_surface(np.array([[0, 0], [4500, 4500]]),
