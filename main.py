@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 streeteasy = pd.read_csv("streeteasy.csv")
 df = pd.DataFrame(streeteasy)
 
-# Dependent variables
+# Independent variables
 x_value_1 = "size_sqft"
 x_value_2 = "building_age_yrs"
 
